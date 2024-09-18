@@ -2,9 +2,9 @@ package concurrent
 
 import (
 	"fmt"
-	"github.com/bilibili/gengine/builder"
-	"github.com/bilibili/gengine/context"
-	"github.com/bilibili/gengine/engine"
+	"github.com/szlizard/gengine/builder"
+	"github.com/szlizard/gengine/context"
+	"github.com/szlizard/gengine/engine"
 	"sync"
 	"testing"
 	"time"
@@ -184,7 +184,7 @@ func Test_map_bbb(t *testing.T) {
 
 }
 
-//bad case
+// bad case
 func Test_map_conc(t *testing.T) {
 	//init
 	apis := make(map[string]interface{})

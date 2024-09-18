@@ -1,7 +1,7 @@
 package base
 
 import (
-	"github.com/bilibili/gengine/context"
+	"github.com/szlizard/gengine/context"
 	"reflect"
 )
 

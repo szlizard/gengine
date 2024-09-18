@@ -2,9 +2,9 @@ package map_slice_array
 
 import (
 	"fmt"
-	"github.com/bilibili/gengine/builder"
-	"github.com/bilibili/gengine/context"
-	"github.com/bilibili/gengine/engine"
+	"github.com/szlizard/gengine/builder"
+	"github.com/szlizard/gengine/context"
+	"github.com/szlizard/gengine/engine"
 	"reflect"
 	"testing"
 	"time"

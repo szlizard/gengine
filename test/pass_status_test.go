@@ -1,9 +1,9 @@
 package test
 
 import (
-	"github.com/bilibili/gengine/builder"
-	"github.com/bilibili/gengine/context"
-	"github.com/bilibili/gengine/engine"
+	"github.com/szlizard/gengine/builder"
+	"github.com/szlizard/gengine/context"
+	"github.com/szlizard/gengine/engine"
 	"testing"
 )
 
@@ -40,7 +40,7 @@ type Result struct {
 	V int
 }
 
-//示例： 首先 初始化Result.V=0，然后在每个规则中，对Result.V加1，打印Result.V的最终结果
+// 示例： 首先 初始化Result.V=0，然后在每个规则中，对Result.V加1，打印Result.V的最终结果
 func Test_pass_status(t *testing.T) {
 	dataContext := context.NewDataContext()
 	//inject struct

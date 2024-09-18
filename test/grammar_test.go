@@ -2,13 +2,14 @@ package test
 
 import (
 	"fmt"
-	"github.com/bilibili/gengine/builder"
-	"github.com/bilibili/gengine/context"
-	"github.com/bilibili/gengine/internal/base"
-	parser "github.com/bilibili/gengine/internal/iantlr/alr"
-	"github.com/bilibili/gengine/internal/iparser"
-	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"testing"
+
+	"github.com/antlr4-go/antlr/v4"
+	"github.com/szlizard/gengine/builder"
+	"github.com/szlizard/gengine/context"
+	"github.com/szlizard/gengine/internal/base"
+	parser "github.com/szlizard/gengine/internal/iantlr/alr"
+	"github.com/szlizard/gengine/internal/iparser"
 )
 
 const (
@@ -62,7 +63,8 @@ func Test_base_msg(t *testing.T) {
 	}
 }
 
-/**
+/*
+*
 测试语法错误
 */
 func Test_err(t *testing.T) {

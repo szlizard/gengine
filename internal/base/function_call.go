@@ -3,7 +3,7 @@ package base
 import (
 	"errors"
 	"fmt"
-	"github.com/bilibili/gengine/context"
+	"github.com/szlizard/gengine/context"
 	"reflect"
 	"runtime"
 	"strings"

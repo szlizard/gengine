@@ -3,12 +3,12 @@ package base
 import (
 	"errors"
 	"fmt"
-	"github.com/bilibili/gengine/context"
-	"github.com/bilibili/gengine/internal/core"
+	"github.com/szlizard/gengine/context"
+	"github.com/szlizard/gengine/internal/core"
 	"reflect"
 )
 
-//support map or array
+// support map or array
 type MapVar struct {
 	SourceCode
 	Name   string // map name

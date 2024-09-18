@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/bilibili/gengine/builder"
-	"github.com/bilibili/gengine/context"
-	"github.com/bilibili/gengine/engine"
 	"github.com/stretchr/testify/assert"
+	"github.com/szlizard/gengine/builder"
+	"github.com/szlizard/gengine/context"
+	"github.com/szlizard/gengine/engine"
 )
 
 const forRule = `
