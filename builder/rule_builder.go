@@ -3,15 +3,16 @@ package builder
 import (
 	"errors"
 	"fmt"
-	"github.com/antlr/antlr4/runtime/Go/antlr"
-	"github.com/bilibili/gengine/context"
-	"github.com/bilibili/gengine/internal/base"
-	parser "github.com/bilibili/gengine/internal/iantlr/alr"
-	"github.com/bilibili/gengine/internal/iparser"
-	"github.com/bilibili/gengine/internal/tool"
 	"sort"
 	"strings"
 	"sync"
+
+	"github.com/antlr4-go/antlr/v4"
+	"github.com/szlizard/gengine/context"
+	"github.com/szlizard/gengine/internal/base"
+	parser "github.com/szlizard/gengine/internal/iantlr/alr"
+	"github.com/szlizard/gengine/internal/iparser"
+	"github.com/szlizard/gengine/internal/tool"
 )
 
 type RuleBuilder struct {
@@ -29,7 +30,7 @@ func NewRuleBuilder(dc *context.DataContext) *RuleBuilder {
 	}
 }
 
-//chinese comment :全量更新
+// chinese comment :全量更新
 // if update success, all old rules will be delete and you inject new rules will be in the gengine
 func (builder *RuleBuilder) BuildRuleFromString(ruleString string) error {
 	builder.buildLock.Lock()
@@ -45,6 +46,7 @@ func (builder *RuleBuilder) BuildRuleFromString(ruleString string) error {
 	in := antlr.NewInputStream(ruleString)
 	lexer := parser.NewgengineLexer(in)
 	lexerErrListener := iparser.NewGengineErrorListener()
+	lexer.RemoveErrorListeners()
 	lexer.AddErrorListener(lexerErrListener)
 	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	listener := iparser.NewGengineParserListener(kc)
@@ -53,6 +55,7 @@ func (builder *RuleBuilder) BuildRuleFromString(ruleString string) error {
 	psr.BuildParseTrees = true
 	//grammar listener
 	grammarErrListener := iparser.NewGengineErrorListener()
+	psr.RemoveErrorListeners()
 	psr.AddErrorListener(grammarErrListener)
 	antlr.ParseTreeWalkerDefault.Walk(listener, psr.Primary())
 
@@ -86,7 +89,7 @@ func (builder *RuleBuilder) BuildRuleFromString(ruleString string) error {
 	return nil
 }
 
-//chinese comment:增量更新
+// chinese comment:增量更新
 // if a rule already exists, this method will use the new rule to replace the old one
 // if a rule doesn't exist, this method will add the new rule to the existed rules list
 // in detail: copy from old -> update the copy -> use the updated copy to replace old
@@ -103,6 +106,7 @@ func (builder *RuleBuilder) BuildRuleWithIncremental(ruleString string) error {
 	in := antlr.NewInputStream(ruleString)
 	lexer := parser.NewgengineLexer(in)
 	lexerErrListener := iparser.NewGengineErrorListener()
+	lexer.RemoveErrorListeners()
 	lexer.AddErrorListener(lexerErrListener)
 	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 
@@ -113,6 +117,7 @@ func (builder *RuleBuilder) BuildRuleWithIncremental(ruleString string) error {
 	psr.BuildParseTrees = true
 
 	grammarErrListener := iparser.NewGengineErrorListener()
+	psr.RemoveErrorListeners()
 	psr.AddErrorListener(grammarErrListener)
 	antlr.ParseTreeWalkerDefault.Walk(listener, psr.Primary())
 
