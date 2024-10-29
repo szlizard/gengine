@@ -16,6 +16,7 @@ concStatement : CONC LR_BRACE ( functionCall | methodCall | threeLevelCall | ass
 expression : mathExpression
             | expression comparisonOperator expression
             | expression logicalOperator expression
+            | expression IN expression   // 新增对 `in` 操作符的支持
             | notOperator ? expressionAtom
             | notOperator ? LR_BRACKET expression  RR_BRACKET
             ;
@@ -88,7 +89,7 @@ mathPmOperator : PLUS | MINUS ;
 
 mathMdOperator : MUL | DIV ;
 
-comparisonOperator : GT | LT | GTE | LTE | EQUALS | NOTEQUALS ;
+comparisonOperator : GT | LT | GTE | LTE | EQUALS | NOTEQUALS | IN ;  // 新增 `IN`
 
 logicalOperator : AND | OR ;
 
@@ -163,6 +164,8 @@ NULL_LITERAL                : N U L L ;
 SALIENCE                    : S A L I E N C E ;
 BEGIN                       : B E G I N;
 END                         : E N D;
+
+IN : I N ;
 
 SIMPLENAME :  ('a'..'z' |'A'..'Z'| '_')+ ( ('0'..'9') | ('a'..'z' |'A'..'Z') | '_' )* ;
 

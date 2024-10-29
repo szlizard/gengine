@@ -3,8 +3,9 @@ package base
 import (
 	"errors"
 	"fmt"
-	"github.com/szlizard/gengine/context"
 	"reflect"
+
+	"github.com/szlizard/gengine/context"
 )
 
 var TypeMap = map[string]string{
@@ -139,6 +140,16 @@ func (e *Expression) Evaluate(dc *context.DataContext, Vars map[string]reflect.V
 		//
 		flv := lv //reflect.ValueOf(lv)
 		frv := rv //reflect.ValueOf(rv)
+
+		// 添加对 "in" 操作符的处理逻辑
+		if e.ComparisonOperator == "in" {
+			inResult, err := evaluateInOperator(flv, frv)
+			if err != nil {
+				return reflect.ValueOf(nil), errors.New(fmt.Sprintf("line %d, column %d, code: %s, %v", e.LineNum, e.Column, e.Code, err))
+			}
+			b = reflect.ValueOf(inResult)
+			goto LAST
+		}
 
 		//string compare
 		tlv := lv //reflect.TypeOf(lv).String()

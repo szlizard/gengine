@@ -2,6 +2,6 @@
 vendor
 *.so
 go.sum
-antlr-4.13.1-complete.jar
+antlr-*-complete.jar
 .DS_Store
 .vscode
