@@ -39,7 +39,7 @@ rule "test in operator"
 	end
 `
 
-func TestInOperator(t *testing.T) {
+func Test_in_operator(t *testing.T) {
 	dataContext := context.NewDataContext()
 	dataContext.Add("println", fmt.Println)
 

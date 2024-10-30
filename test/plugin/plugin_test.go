@@ -2,17 +2,18 @@ package main
 
 import (
 	"fmt"
-	"github.com/szlizard/gengine/builder"
-	"github.com/szlizard/gengine/context"
-	"github.com/szlizard/gengine/engine"
 	"os"
 	"path"
 	"path/filepath"
 	"plugin"
 	"testing"
+
+	"github.com/szlizard/gengine/builder"
+	"github.com/szlizard/gengine/context"
+	"github.com/szlizard/gengine/engine"
 )
 
-func Test_pligin(t *testing.T) {
+func Test_official_pligin(t *testing.T) {
 
 	dir, err := os.Getwd()
 	if err != nil {
@@ -48,7 +49,7 @@ func Test_pligin(t *testing.T) {
 
 }
 
-func Test_plugin_with_gengine(t *testing.T) {
+func Test_official_plugin_with_gengine(t *testing.T) {
 
 	dir, err := os.Getwd()
 	if err != nil {
@@ -88,7 +89,7 @@ func Test_plugin_with_gengine(t *testing.T) {
 	}
 }
 
-func Test_plugin_with_pool(t *testing.T) {
+func Test_official_plugin_with_pool(t *testing.T) {
 
 	rule := `
 	rule "1"
@@ -131,7 +132,7 @@ func Test_plugin_with_pool(t *testing.T) {
 	}
 }
 
-func Test_file(t *testing.T) {
+func Test_official_file(t *testing.T) {
 
 	///Users/renyunyi/go_project/gengine/test/plugin_t/
 	files := "plugin_superman.so"
